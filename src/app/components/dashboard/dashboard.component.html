@@ -1,0 +1,75 @@
+<div class="min-h-screen flex bg-gray-100">
+  <aside
+    class="hidden md:block bg-white border-r border-gray-200 rounded-r-lg shadow-lg transition-all duration-300 relative"
+    [ngClass]="{ 'md:w-20': !isMenuExpanded, 'md:w-64': isMenuExpanded }"
+  >
+    <div class="py-4 px-6">
+      <div class="flex items-center mb-4">
+        <img
+          src="https://images.vexels.com/media/users/3/282447/isolated/preview/33e1788be4e7953d574aadf11d213ffe-wild-west-cow-icon.png"
+          alt="Logo"
+          class="mr-3 h-8 w-8 rounded-full"
+        />
+        <span *ngIf="isMenuExpanded" class="text-xl font-bold text-gray-800"
+          >PLANILHA LEITE</span
+        >
+      </div>
+
+      <hr class="text-gray-200 mb-10">
+
+      <ul class="space-y-2">
+        <li *ngFor="let item of menuItems">
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="bg-blue-50 text-blue-600"
+            class="flex items-center p-2 text-base font-normal text-gray-600 rounded-lg hover:bg-gray-100 hover:text-gray-800 group"
+          >
+            <i [ngClass]="item.icon" class="text-xl mr-1"></i>
+            <span *ngIf="isMenuExpanded" class="ml-3">{{ item.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <button
+      (click)="toggleMenu()"
+      class="absolute top-4 -right-4 bg-gray-100 border border-gray-300 rounded-lg p-2 shadow-md hover:bg-gray-200 transition cursor-pointer"
+    >
+      <i
+        [ngClass]="isMenuExpanded ? 'ph ph-caret-left' : 'ph ph-caret-right'"
+        class="text-xl text-gray-600"
+      ></i>
+    </button>
+  </aside>
+
+  <div class="flex-1">
+    <nav class="bg-white border-b border-gray-200 shadow-md">
+      <div
+        class="max-w flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="#" class="flex items-center">
+          <img
+            src="https://s.tmimgcdn.com/scr/1200x750/251800/vaca-animal-logo-e-simbolo-vetor-v1_251857-original.jpg"
+            class="h-13 w-full mx-10"
+          />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap text-gray-800"
+            >PLANILHA LEITE</span
+          >
+        </a>
+        <div class="flex items-center md:order-2">
+          <button
+            (click)="logout()"
+            class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="p-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
